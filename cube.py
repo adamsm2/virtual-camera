@@ -2,19 +2,25 @@ from vertex import Vertex
 from edge import Edge
 from wall import Wall
 import numpy as np
-import pygame
+import random
 
 class Cube:
-    def __init__(self, x, y, z):
+    def __init__(self, x, y, z, cube_edge_length):
         self.x = x
         self.y = y
         self.z = z
-        self.width = 150
-        self.height = 150
-        self.depth = 150
+        self.width = cube_edge_length
+        self.height = cube_edge_length
+        self.depth = cube_edge_length
         self.vertices = self.calculate_vertices()
         self.edges = self.calculate_edges()
         self.walls = self.calculate_walls()
+
+    def get_random_color(self):
+        red = random.randint(0, 255)
+        green = random.randint(0, 255)
+        blue = random.randint(0, 255)
+        return (red, green, blue)
 
     def calculate_vertices(self):
         x, y, z = self.x, self.y, self.z
@@ -34,32 +40,32 @@ class Cube:
     def calculate_edges(self):
         vertices = self.vertices
         edges = [
-            Edge(vertices[0], vertices[1]),
-            Edge(vertices[1], vertices[3]),
-            Edge(vertices[2], vertices[3]),
-            Edge(vertices[0], vertices[2]),
+            Edge(vertices[0], vertices[1], self.get_random_color()),
+            Edge(vertices[1], vertices[3], self.get_random_color()),
+            Edge(vertices[2], vertices[3], self.get_random_color()),
+            Edge(vertices[0], vertices[2], self.get_random_color()),
 
-            Edge(vertices[4], vertices[5]),
-            Edge(vertices[5], vertices[7]),
-            Edge(vertices[6], vertices[7]),
-            Edge(vertices[4], vertices[6]),
+            Edge(vertices[4], vertices[5], self.get_random_color()),
+            Edge(vertices[5], vertices[7], self.get_random_color()),
+            Edge(vertices[6], vertices[7], self.get_random_color()),
+            Edge(vertices[4], vertices[6], self.get_random_color()),
 
-            Edge(vertices[0], vertices[4]),
-            Edge(vertices[1], vertices[5]),
-            Edge(vertices[2], vertices[6]),
-            Edge(vertices[3], vertices[7])
+            Edge(vertices[0], vertices[4], self.get_random_color()),
+            Edge(vertices[1], vertices[5], self.get_random_color()),
+            Edge(vertices[2], vertices[6], self.get_random_color()),
+            Edge(vertices[3], vertices[7], self.get_random_color())
         ]
         return edges
     
     def calculate_walls(self):
         vertices = self.vertices
         walls = [
-            Wall(vertices[0], vertices[1], vertices[3], vertices[2]),
-            Wall(vertices[4], vertices[6], vertices[7], vertices[5]), 
-            Wall(vertices[2], vertices[3], vertices[7], vertices[6]),
-            Wall(vertices[1], vertices[5], vertices[7], vertices[3]),
-            Wall(vertices[0], vertices[2], vertices[6], vertices[4]),
-            Wall(vertices[0], vertices[4], vertices[5], vertices[1])
+            Wall(vertices[0], vertices[1], vertices[3], vertices[2], self.get_random_color()),
+            Wall(vertices[4], vertices[6], vertices[7], vertices[5], self.get_random_color()), 
+            Wall(vertices[2], vertices[3], vertices[7], vertices[6], self.get_random_color()),
+            Wall(vertices[1], vertices[5], vertices[7], vertices[3], self.get_random_color()),
+            Wall(vertices[0], vertices[2], vertices[6], vertices[4], self.get_random_color()),
+            Wall(vertices[0], vertices[4], vertices[5], vertices[1], self.get_random_color())
         ]
         return walls
     
@@ -69,11 +75,6 @@ class Cube:
             vertex.x = transformed_vertex[0][0].item()
             vertex.y = transformed_vertex[1][0].item()
             vertex.z = transformed_vertex[2][0].item()
-
-    def project_edges_to_2d(self, screen, d):
-        for edge in self.edges:
-            if(edge.is_visible()):
-                pygame.draw.line(screen, edge.color, edge.start_vertex.get_2d_representation(d), edge.end_vertex.get_2d_representation(d), 1)
 
     def get_visible_walls(self):
         visible_walls = []

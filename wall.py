@@ -4,25 +4,19 @@ import pygame
 import numpy as np
 
 class Wall:
-    def __init__(self, v1, v2, v3, v4):
+    def __init__(self, v1, v2, v3, v4, color):
         self.v1 = v1
         self.v2 = v2
         self.v3 = v3
         self.v4 = v4
-        self.color = self.get_random_color()
-
-    def get_random_color(self):
-        red = random.randint(0, 255)
-        green = random.randint(0, 255)
-        blue = random.randint(0, 255)
-        return (red, green, blue)
+        self.color = color
     
-    def project_to_2d(self, screen, d, if_full_walls):
+    def project_to_2d(self, screen, d, if_full_walls, screen_width, screen_height):
         vertices = []
-        vertices.append(self.v1.get_2d_representation(d))
-        vertices.append(self.v2.get_2d_representation(d))
-        vertices.append(self.v3.get_2d_representation(d))
-        vertices.append(self.v4.get_2d_representation(d))
+        vertices.append(self.v1.get_2d_representation(d, screen_width, screen_height))
+        vertices.append(self.v2.get_2d_representation(d, screen_width, screen_height))
+        vertices.append(self.v3.get_2d_representation(d, screen_width, screen_height))
+        vertices.append(self.v4.get_2d_representation(d, screen_width, screen_height))
         if(if_full_walls):
             pygame.draw.polygon(screen, self.color, vertices)
         else:

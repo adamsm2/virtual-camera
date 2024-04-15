@@ -1,15 +1,12 @@
 import numpy as np
 
-screen_width = 1280
-screen_height = 720
-
 class Vertex:
     def __init__(self, x, y, z):
         self.x = x
         self.y = y
         self.z = z
     
-    def get_2d_representation(self, d):
+    def get_2d_representation(self, d, screen_width, screen_height):
         x = screen_width/2 + (self.x * d) / self.z
         y = screen_height/2 - (self.y * d) / self.z
         return [x, y]
