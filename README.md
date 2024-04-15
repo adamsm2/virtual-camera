@@ -1,5 +1,5 @@
 # Controls:
-- Move the camera [W S A D]
+- Move the camera [W S A D SPACE LSHIFT]
 - Rotate OZ [Q E]
 - Rotate OX [UP DOWN]
 - ROTATE OY [LEFT RIGHT]
