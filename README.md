@@ -2,7 +2,7 @@
 - Move the camera [W S A D SPACE LSHIFT]
 - Rotate OZ [Q E]
 - Rotate OX [UP DOWN]
-- ROTATE OY [LEFT RIGHT]
+- Rotate OY [LEFT RIGHT]
 - Zoom in [C]
 - Zoom out [V]
 - Mode: [1 2 3]
