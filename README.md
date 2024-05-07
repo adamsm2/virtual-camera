@@ -9,6 +9,7 @@
   1 - edges only
   2 - painted walls
   3 - painted walls using width 1 (optimization demonstration)
+![virtual-camera](https://github.com/adamsm2/virtual-camera/assets/95346590/37502e4a-608b-4a43-a8d5-614f06cd69cc)
 # Some screenshots of the app
 ![image](https://github.com/adamsm2/virtual-camera/assets/95346590/e76a548b-6c5c-46e3-9664-e7a4d8ef24b9)
 ![image](https://github.com/adamsm2/virtual-camera/assets/95346590/c9d4dfcb-bccf-4fe5-9ff3-fc5e28040c36)
